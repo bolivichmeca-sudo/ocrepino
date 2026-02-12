@@ -2,7 +2,7 @@
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ô'crepino - Meilleure Crêperie & Restaurant à Salé</title>
     
     <!-- Meta tags للتعريف بالموقع -->
@@ -50,11 +50,11 @@
 
     <style>
         /* التنسيقات الأساسية */
-        body { overflow-x: hidden; }
+        body { overflow-x: hidden; width: 100%; }
         .text-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
         .hero-overlay { background: rgba(0, 0, 0, 0.5); z-index: 1; }
         
-        /* فيديو الخلفية الرئيسي */
+        /* فيديو الخلفية الرئيسي - تحسين التغطية للهاتف */
         .video-background-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0;
             background-color: #000;
@@ -67,9 +67,9 @@
         @media (max-aspect-ratio: 9/16) { .video-background-container iframe { height: 100vh; width: 56.25vh; min-width: 100vw; } }
 
         /* الأنيميشن عند التمرير */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        @keyframes float { 0%, 100% { transform: translateY(0px) scale(1.1); } 50% { transform: translateY(-10px) scale(1.1); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px) scale(1.05); } 50% { transform: translateY(-10px) scale(1.05); } }
         .animate-float { animation: float 6s ease-in-out infinite; }
 
         /* شريط القائمة الذهبي */
@@ -77,20 +77,23 @@
             background: rgba(253, 190, 52, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            height: 90px;
+            height: 70px;
             display: flex; align-items: center;
             box-shadow: 0 4px 20px rgba(224, 168, 0, 0.25);
         }
+        @media (min-width: 768px) { .glass-nav { height: 90px; } }
 
         /* محول اللغة */
         .lang-container {
             background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 50px; padding: 3px; display: flex; align-items: center; border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px; padding: 2px; display: flex; align-items: center; border: 1px solid rgba(255, 255, 255, 0.4);
         }
-        .lang-btn { cursor: pointer; font-weight: 700; font-size: 0.75rem; padding: 6px 14px; border-radius: 50px; transition: all 0.3s ease; color: #1B5E55; }
+        .lang-btn { cursor: pointer; font-weight: 700; font-size: 0.7rem; padding: 4px 10px; border-radius: 50px; transition: all 0.3s ease; color: #1B5E55; }
+        @media (min-width: 768px) { .lang-btn { font-size: 0.75rem; padding: 6px 14px; } }
         .lang-btn.active { background-color: #1B5E55; color: white; box-shadow: 0 2px 8px rgba(27, 94, 85, 0.3); }
         
-        .logo-fix { transform: scale(1.45); } 
+        .logo-fix { transform: scale(1.3); } 
+        @media (min-width: 768px) { .logo-fix { transform: scale(1.45); } }
 
         /* إصلاحات اللغة العربية */
         [dir="rtl"] { font-family: 'Tajawal', sans-serif !important; }
@@ -103,27 +106,31 @@
         
         @keyframes fadeInScale { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
         .menu-content.block { animation: fadeInScale 0.4s ease-out; }
+
+        /* Hide scrollbar for menu tabs */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="font-sans text-brand-dark bg-brand-cream antialiased selection:bg-brand-mustard selection:text-white">
+<body class="font-sans text-brand-dark bg-brand-cream antialiased selection:bg-brand-mustard selection:text-white overflow-x-hidden">
 
-    <!-- شريط التنقل (Navigation) -->
+    <!-- Navigation -->
     <nav class="fixed w-full z-50 transition-all duration-300 glass-nav" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="flex justify-between items-center w-full">
-                <!-- الشعار (Logo) -->
+                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="flex items-center gap-3 group">
-                        <div class="h-16 w-16 rounded-full border-4 border-white/80 overflow-hidden flex items-center justify-center bg-white shadow-lg transition-transform group-hover:scale-105">
+                    <a href="#" class="flex items-center gap-2 md:gap-3 group">
+                        <div class="h-12 w-12 md:h-16 md:w-16 rounded-full border-2 md:border-4 border-white/80 overflow-hidden flex items-center justify-center bg-white shadow-lg transition-transform group-hover:scale-105">
                             <img class="w-full h-full object-cover logo-fix" src="https://i.postimg.cc/tT3Yq7nY/Whats-App-Image-2026-02-09-at-02-18-16.jpg" alt="Logo">
                         </div>
-                        <span class="font-creative text-2xl hidden sm:block tracking-wide">
+                        <span class="font-creative text-xl md:text-2xl hidden xs:block tracking-wide">
                             <span class="text-white">Ô</span><span class="text-brand-teal">'crepino</span>
                         </span>
                     </a>
                 </div>
                 
-                <!-- القائمة الرئيسية (Desktop) -->
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-6 lg:gap-8">
                     <div class="flex gap-6">
                         <a href="#about" class="text-brand-teal hover:text-white font-bold text-sm lg:text-base uppercase tracking-wider transition-colors duration-300" data-i18n="nav_about">À Propos</a>
@@ -142,25 +149,25 @@
                     </a>
                 </div>
 
-                <!-- ضوابط الهاتف -->
-                <div class="md:hidden flex items-center gap-3">
+                <!-- Mobile Controls -->
+                <div class="md:hidden flex items-center gap-2">
                     <div class="lang-container scale-90 m-0 bg-white/20 border-0">
                         <span class="lang-btn active" onclick="setLanguage('fr')">FR</span>
                         <span class="lang-btn" onclick="setLanguage('ar')">AR</span>
                     </div>
-                    <button id="mobile-menu-btn" class="text-brand-teal bg-white/90 p-2.5 rounded-xl hover:bg-white focus:outline-none shadow-md">
-                        <i class="fas fa-bars text-xl"></i>
+                    <button id="mobile-menu-btn" class="text-brand-teal bg-white/90 p-2 rounded-lg hover:bg-white focus:outline-none shadow-md">
+                        <i class="fas fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- قائمة الهاتف المنسدلة -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-mustard/98 backdrop-blur-xl border-t border-white/20 shadow-2xl absolute top-[90px] left-0 w-full transition-all duration-300">
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-mustard/98 backdrop-blur-xl border-t border-white/20 shadow-2xl absolute top-[70px] left-0 w-full transition-all duration-300">
             <div class="px-6 pt-6 pb-8 space-y-4 text-center">
-                <a href="#about" class="block py-3 text-brand-teal hover:bg-white/20 hover:text-white rounded-xl font-bold text-lg transition-colors" data-i18n="nav_about">À Propos</a>
-                <a href="#menu" class="block py-3 text-brand-teal hover:bg-white/20 hover:text-white rounded-xl font-bold text-lg transition-colors" data-i18n="nav_menu">Menu</a>
-                <a href="#gallery" class="block py-3 text-brand-teal hover:bg-white/20 hover:text-white rounded-xl font-bold text-lg transition-colors" data-i18n="nav_gallery">Galerie</a>
+                <a href="#about" class="block py-3 text-brand-teal hover:bg-white/20 hover:text-white rounded-xl font-bold text-lg transition-colors" data-i18n="nav_about" onclick="toggleMobileMenu()">À Propos</a>
+                <a href="#menu" class="block py-3 text-brand-teal hover:bg-white/20 hover:text-white rounded-xl font-bold text-lg transition-colors" data-i18n="nav_menu" onclick="toggleMobileMenu()">Menu</a>
+                <a href="#gallery" class="block py-3 text-brand-teal hover:bg-white/20 hover:text-white rounded-xl font-bold text-lg transition-colors" data-i18n="nav_gallery" onclick="toggleMobileMenu()">Galerie</a>
                 <a href="https://wa.me/212771272260" target="_blank" class="block w-full mt-6 px-5 py-4 bg-brand-teal text-white rounded-xl font-bold shadow-lg flex justify-center items-center gap-2">
                     <i class="fab fa-whatsapp text-xl"></i> <span data-i18n="btn_whatsapp_full">Commander sur WhatsApp</span>
                 </a>
@@ -168,275 +175,270 @@
         </div>
     </nav>
 
-    <!-- قسم الواجهة الرئيسية (Hero Section) -->
+    <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden bg-black">
         <div class="video-background-container">
-            <!-- فيديو الخلفية الأول (Streamable) -->
             <iframe src="https://streamable.com/e/2snl0b?autoplay=1&loop=1&muted=1&controls=0&nocontrols=1" frameborder="0" width="100%" height="100%" allow="fullscreen; autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         
         <div class="absolute inset-0 hero-overlay pointer-events-none"></div>
 
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto reveal active pt-24">
-            <div class="mb-8 flex justify-center">
-                <div class="w-40 h-40 md:w-52 md:h-52 rounded-full border-[5px] border-white/30 backdrop-blur-md shadow-2xl overflow-hidden flex items-center justify-center bg-black/80 animate-float">
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto reveal active pt-16 md:pt-24">
+            <div class="mb-6 md:mb-8 flex justify-center">
+                <div class="w-32 h-32 md:w-52 md:h-52 rounded-full border-[3px] md:border-[5px] border-white/30 backdrop-blur-md shadow-2xl overflow-hidden flex items-center justify-center bg-black/80 animate-float">
                     <img src="https://i.postimg.cc/tT3Yq7nY/Whats-App-Image-2026-02-09-at-02-18-16.jpg" alt="Logo" class="w-full h-full object-cover logo-fix">
                 </div>
             </div>
             
-            <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight text-shadow tracking-tight">
+            <h1 class="font-heading text-4xl md:text-7xl font-extrabold text-white mb-4 md:mb-6 leading-tight text-shadow tracking-tight">
                 <span data-i18n="hero_welcome">Bienvenue chez</span> 
-                <br class="md:hidden">
-                <span class="inline-block font-creative mt-2 md:mt-0 transform -rotate-2 origin-center">
+                <br>
+                <span class="inline-block font-creative mt-2 transform -rotate-2 origin-center">
                     <span class="text-brand-red drop-shadow-lg">Ô</span><span class="text-brand-mustard drop-shadow-lg">'crepino</span>
                 </span>
             </h1>
             
-            <p class="text-lg md:text-2xl text-gray-100/90 mb-10 font-light max-w-2xl mx-auto leading-relaxed text-shadow" data-i18n="hero_subtitle">
+            <p class="text-base md:text-2xl text-gray-100/90 mb-8 md:mb-10 font-light max-w-2xl mx-auto leading-relaxed text-shadow px-4" data-i18n="hero_subtitle">
                 L'art de la crêpe et de la convivialité marocaine au cœur de Salé.
             </p>
             
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full px-6">
-                <a href="#menu" class="w-full md:w-auto px-10 py-4 bg-brand-mustard text-brand-dark font-bold rounded-full hover:bg-white hover:text-brand-teal transition-all shadow-lg transform hover:-translate-y-1 hover:scale-105 border-b-4 border-brand-mustardDark" data-i18n="btn_menu">
+            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full max-w-xs sm:max-w-none mx-auto">
+                <a href="#menu" class="w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 bg-brand-mustard text-brand-dark font-bold rounded-full hover:bg-white hover:text-brand-teal transition-all shadow-lg transform hover:-translate-y-1 hover:scale-105 border-b-4 border-brand-mustardDark text-sm md:text-base text-center" data-i18n="btn_menu">
                     Voir le Menu
                 </a>
-                <a href="https://wa.me/212771272260" target="_blank" class="w-full md:w-auto px-10 py-4 bg-brand-teal text-white font-bold rounded-full hover:bg-brand-purple transition-all shadow-lg transform hover:-translate-y-1 hover:scale-105 flex items-center justify-center gap-2 border-b-4 border-[#12423c]">
-                    <i class="fab fa-whatsapp text-2xl"></i> <span data-i18n="btn_order">Commander</span>
+                <a href="https://wa.me/212771272260" target="_blank" class="w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 bg-brand-teal text-white font-bold rounded-full hover:bg-brand-purple transition-all shadow-lg transform hover:-translate-y-1 hover:scale-105 flex items-center justify-center gap-2 border-b-4 border-[#12423c] text-sm md:text-base">
+                    <i class="fab fa-whatsapp text-xl"></i> <span data-i18n="btn_order">Commander</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- قسم من نحن (About) -->
-    <section id="about" class="py-24 bg-white relative">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-mustard/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white relative">
+        <div class="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-brand-mustard/5 rounded-full blur-3xl -mr-24 -mt-24 md:-mr-32 md:-mt-32"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal">
-                <div class="order-2 md:order-1 relative group">
-                    <div class="absolute inset-0 bg-brand-mustard/20 rounded-[2rem] transform rotate-3 transition-transform group-hover:rotate-6"></div>
-                    <img src="https://i.postimg.cc/wjjHx0R9/Le-brunch-chez-Ocrepino-c-est-l-art-de-commencer-la-journee-avec-elegance-Des-saveurs-genereuse.jpg" alt="Brunch" class="relative rounded-[2rem] shadow-2xl w-full h-[450px] object-cover transition-transform duration-500 group-hover:scale-[1.01]">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center reveal">
+                <div class="order-2 md:order-1 relative group px-4 md:px-0">
+                    <div class="absolute inset-0 bg-brand-mustard/20 rounded-[1.5rem] md:rounded-[2rem] transform rotate-3 transition-transform group-hover:rotate-6"></div>
+                    <img src="https://i.postimg.cc/wjjHx0R9/Le-brunch-chez-Ocrepino-c-est-l-art-de-commencer-la-journee-avec-elegance-Des-saveurs-genereuse.jpg" alt="Brunch" class="relative rounded-[1.5rem] md:rounded-[2rem] shadow-2xl w-full h-[300px] md:h-[450px] object-cover transition-transform duration-500 group-hover:scale-[1.01]">
                 </div>
-                <div class="order-1 md:order-2 text-center md:text-start" dir="auto">
-                    <span class="text-brand-purple font-bold tracking-widest text-sm uppercase mb-2 block" data-i18n="about_uptitle">Notre Histoire</span>
-                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-teal mb-8 leading-tight">
-                        <span data-i18n="about_title">Plus qu'un restaurant,</span> <br><span class="text-brand-purple font-creative text-5xl" data-i18n="about_subtitle">une expérience.</span>
+                <div class="order-1 md:order-2 text-center md:text-left" dir="auto">
+                    <span class="text-brand-purple font-bold tracking-widest text-xs md:text-sm uppercase mb-2 block" data-i18n="about_uptitle">Notre Histoire</span>
+                    <h2 class="font-heading text-3xl md:text-5xl font-bold text-brand-teal mb-6 md:mb-8 leading-tight">
+                        <span data-i18n="about_title">Plus qu'un restaurant,</span> <br><span class="text-brand-purple font-creative text-4xl md:text-5xl" data-i18n="about_subtitle">une expérience.</span>
                     </h2>
-                    <p class="text-gray-600 mb-6 text-lg leading-relaxed font-light" data-i18n="about_text1">
+                    <p class="text-gray-600 mb-4 md:mb-6 text-base md:text-lg leading-relaxed font-light px-2 md:px-0" data-i18n="about_text1">
                         Situé à Salé، Ô'crepino est né d'une passion pour les saveurs authentiques et l'hospitalité marocaine.
                     </p>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed font-light" data-i18n="about_text2">
-                        Que vous ayez envie d'une crêpe gourmande, d'une pizza croustillante أو مجرد قهوة، فريقنا يرحب بك بابتسامة.
+                    <p class="text-gray-600 mb-6 md:mb-8 text-base md:text-lg leading-relaxed font-light px-2 md:px-0" data-i18n="about_text2">
+                        Que vous ayez envie d'une crêpe gourmande, d'une pizza croustillante ou simplement d'un café، notre équipe vous accueille avec le sourire.
                     </p>
-                    <div class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start gap-4 bg-brand-cream p-6 rounded-2xl border border-brand-mustard/20 shadow-sm">
-                        <i class="fas fa-quote-left text-3xl text-brand-mustard opacity-50"></i>
-                        <p class="font-heading font-semibold text-brand-teal italic text-lg" data-i18n="about_quote">"Le meilleur endroit à Salé pour se détendre en famille."</p>
+                    <div class="flex flex-col md:flex-row items-center gap-4 bg-brand-cream p-5 md:p-6 rounded-2xl border border-brand-mustard/20 shadow-sm mx-4 md:mx-0">
+                        <i class="fas fa-quote-left text-2xl md:text-3xl text-brand-mustard opacity-50"></i>
+                        <p class="font-heading font-semibold text-brand-teal italic text-base md:text-lg" data-i18n="about_quote">"Le meilleur endroit à Salé pour se détendre en famille."</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- قسم المنيو الكامل (Menu Section) -->
-    <section id="menu" class="py-24 pattern-bg" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');">
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 md:py-24 pattern-bg" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-            <div class="text-center mb-16">
-                <span class="text-brand-purple font-bold tracking-wider uppercase text-sm" data-i18n="menu_subtitle">DÉCOUVREZ</span>
-                <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-dark mt-2 mb-4">
+            <div class="text-center mb-10 md:mb-16">
+                <span class="text-brand-purple font-bold tracking-wider uppercase text-xs md:text-sm" data-i18n="menu_subtitle">DÉCOUVREZ</span>
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-brand-dark mt-2 mb-4">
                     <span data-i18n="menu_title">Le Menu</span> 
                     <span class="font-creative text-brand-red">Ô</span><span class="font-creative text-brand-mustard">'crepino</span>
                 </h2>
-                <div class="w-32 h-1.5 bg-brand-mustard mx-auto rounded-full"></div>
+                <div class="w-24 md:w-32 h-1 md:h-1.5 bg-brand-mustard mx-auto rounded-full"></div>
             </div>
 
-            <!-- أزرار تبديل المنيو -->
-            <div class="flex overflow-x-auto whitespace-nowrap gap-3 pb-6 mb-8 justify-start md:justify-center no-scrollbar px-2" id="menu-tabs">
-                <button onclick="switchTab('crepes-sales')" class="tab-btn active px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-brand-teal text-white shadow-lg" data-i18n="tab_crepes">Crêpes Salées</button>
-                <button onclick="switchTab('pizzas-pates')" class="tab-btn px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_pizza">Pizzas & Pâtes</button>
-                <button onclick="switchTab('fast-food')" class="tab-btn px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_tacos">Tacos & Burgers</button>
-                <button onclick="switchTab('plats-salades')" class="tab-btn px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_plats">Plats & Salades</button>
-                <button onclick="switchTab('desserts')" class="tab-btn px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_dessert">Sucré</button>
-                <button onclick="switchTab('boissons')" class="tab-btn px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_drinks">Boissons</button>
+            <!-- Tabs -->
+            <div class="flex overflow-x-auto whitespace-nowrap gap-2 md:gap-3 pb-4 mb-6 md:mb-8 justify-start md:justify-center no-scrollbar px-2" id="menu-tabs">
+                <button onclick="switchTab('crepes-sales')" class="tab-btn active px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-brand-teal text-white shadow-lg" data-i18n="tab_crepes">Crêpes Salées</button>
+                <button onclick="switchTab('pizzas-pates')" class="tab-btn px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_pizza">Pizzas & Pâtes</button>
+                <button onclick="switchTab('fast-food')" class="tab-btn px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_tacos">Tacos & Burgers</button>
+                <button onclick="switchTab('plats-salades')" class="tab-btn px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_plats">Plats & Salades</button>
+                <button onclick="switchTab('desserts')" class="tab-btn px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_dessert">Sucré</button>
+                <button onclick="switchTab('boissons')" class="tab-btn px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all transform hover:scale-105 bg-white text-brand-dark border border-gray-200" data-i18n="tab_drinks">Boissons</button>
             </div>
 
-            <!-- محتوى المنيو (Filled with data) -->
-            <div class="bg-white rounded-[2rem] shadow-2xl border border-gray-100 p-8 md:p-12 min-h-[400px]">
+            <!-- Content -->
+            <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-xl md:shadow-2xl border border-gray-100 p-6 md:p-12 min-h-[300px]">
                 
                 <!-- Crêpes Salées -->
                 <div id="crepes-sales" class="menu-content block animate-fade-in">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Fromage Rappe</span><span class="font-bold text-brand-teal text-lg">42 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Œuf Fromage</span><span class="font-bold text-brand-teal text-lg">45 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Végétarienne</span><span class="font-bold text-brand-teal text-lg">49 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Poulet Classique</span><span class="font-bold text-brand-teal text-lg">49 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Charcuterie Fromage</span><span class="font-bold text-brand-teal text-lg">50 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-brand-teal text-lg">65 DH</span><span>Fruits de Mer</span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-16 gap-y-4 md:gap-y-6">
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Fromage Rappe</span><span class="font-bold text-brand-teal text-base md:text-lg">42 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Œuf Fromage</span><span class="font-bold text-brand-teal text-base md:text-lg">45 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Végétarienne</span><span class="font-bold text-brand-teal text-base md:text-lg">49 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Poulet Classique</span><span class="font-bold text-brand-teal text-base md:text-lg">49 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Charcuterie Fromage</span><span class="font-bold text-brand-teal text-base md:text-lg">50 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-brand-teal text-base md:text-lg">65 DH</span><span class="font-bold text-gray-800 text-sm md:text-base">Fruits de Mer</span></div>
                     </div>
                 </div>
 
                 <!-- Pizzas & Pâtes -->
                 <div id="pizzas-pates" class="menu-content hidden animate-fade-in">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Margherita</span><span class="font-bold text-brand-teal text-lg">45 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Pollo / Viande Hachée</span><span class="font-bold text-brand-teal text-lg">55 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">4 Fromaggi</span><span class="font-bold text-brand-teal text-lg">65 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Pizza Ô'crepino</span><span class="font-bold text-brand-teal text-lg">69 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Pasticcio Mixte</span><span class="font-bold text-brand-teal text-lg">59 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Tagliatelle Saumon</span><span class="font-bold text-brand-teal text-lg">75 DH</span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-16 gap-y-4 md:gap-y-6">
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Margherita</span><span class="font-bold text-brand-teal text-base md:text-lg">45 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Pollo / Viande Hachée</span><span class="font-bold text-brand-teal text-base md:text-lg">55 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">4 Fromaggi</span><span class="font-bold text-brand-teal text-base md:text-lg">65 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Pizza Ô'crepino</span><span class="font-bold text-brand-teal text-base md:text-lg">69 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Pasticcio Mixte</span><span class="font-bold text-brand-teal text-base md:text-lg">59 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-brand-teal text-base md:text-lg">75 DH</span><span class="font-bold text-gray-800 text-sm md:text-base">Tagliatelle Saumon</span></div>
                     </div>
                 </div>
 
                 <!-- Tacos & Burgers -->
                 <div id="fast-food" class="menu-content hidden animate-fade-in">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Chicken Burger</span><span class="font-bold text-brand-teal text-lg">50 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Double Cheese Burger</span><span class="font-bold text-brand-teal text-lg">65 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Tacos (1 Viande)</span><span class="font-bold text-brand-teal text-lg">55 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Tacos Mixte</span><span class="font-bold text-brand-teal text-lg">59 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Sandwich Sicilian</span><span class="font-bold text-brand-teal text-lg">57 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Quesadillas Pollo</span><span class="font-bold text-brand-teal text-lg">59 DH</span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-16 gap-y-4 md:gap-y-6">
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Chicken Burger</span><span class="font-bold text-brand-teal text-base md:text-lg">50 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Double Cheese Burger</span><span class="font-bold text-brand-teal text-base md:text-lg">65 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Tacos (1 Viande)</span><span class="font-bold text-brand-teal text-base md:text-lg">55 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Tacos Mixte</span><span class="font-bold text-brand-teal text-base md:text-lg">59 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Sandwich Sicilian</span><span class="font-bold text-brand-teal text-base md:text-lg">57 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-brand-teal text-base md:text-lg">59 DH</span><span class="font-bold text-gray-800 text-sm md:text-base">Quesadillas Pollo</span></div>
                     </div>
                 </div>
 
                 <!-- Plats & Salades -->
                 <div id="plats-salades" class="menu-content hidden animate-fade-in">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Salade Cesar</span><span class="font-bold text-brand-teal text-lg">65 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Salade Fraicheur</span><span class="font-bold text-brand-teal text-lg">69 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Emincé de Poulet</span><span class="font-bold text-brand-teal text-lg">75 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Steak de Boeuf</span><span class="font-bold text-brand-teal text-lg">95 DH</span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-16 gap-y-4 md:gap-y-6">
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Salade Cesar</span><span class="font-bold text-brand-teal text-base md:text-lg">65 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Salade Fraicheur</span><span class="font-bold text-brand-teal text-base md:text-lg">69 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Emincé de Poulet</span><span class="font-bold text-brand-teal text-base md:text-lg">75 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-brand-teal text-base md:text-lg">95 DH</span><span class="font-bold text-gray-800 text-sm md:text-base">Steak de Boeuf</span></div>
                     </div>
                 </div>
 
                 <!-- Sucré -->
                 <div id="desserts" class="menu-content hidden animate-fade-in">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Nutella Banane</span><span class="font-bold text-brand-teal text-lg">45 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Pancakes Nutella</span><span class="font-bold text-brand-teal text-lg">39 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Amlou & Fruits Secs</span><span class="font-bold text-brand-teal text-lg">49 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Caramel Beurre Salé</span><span class="font-bold text-brand-teal text-lg">39 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Tasty Crêpe</span><span class="font-bold text-brand-teal text-lg">69 DH</span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-16 gap-y-4 md:gap-y-6">
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Nutella Banane</span><span class="font-bold text-brand-teal text-base md:text-lg">45 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Pancakes Nutella</span><span class="font-bold text-brand-teal text-base md:text-lg">39 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Amlou & Fruits Secs</span><span class="font-bold text-brand-teal text-base md:text-lg">49 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Caramel Beurre Salé</span><span class="font-bold text-brand-teal text-base md:text-lg">39 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-brand-teal text-base md:text-lg">69 DH</span><span class="font-bold text-gray-800 text-sm md:text-base">Tasty Crêpe</span></div>
                     </div>
                 </div>
 
                 <!-- Boissons -->
                 <div id="boissons" class="menu-content hidden animate-fade-in">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Eau Minérale</span><span class="font-bold text-brand-teal text-lg">12 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Jus d'Orange Frais</span><span class="font-bold text-brand-teal text-lg">22 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Mojito Classic / Fraise</span><span class="font-bold text-brand-teal text-lg">32 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Milkshake Oreo</span><span class="font-bold text-brand-teal text-lg">39 DH</span></div>
-                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800">Thé / Café Noir</span><span class="font-bold text-brand-teal text-lg">15 DH</span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 md:gap-x-16 gap-y-4 md:gap-y-6">
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Eau Minérale</span><span class="font-bold text-brand-teal text-base md:text-lg">12 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Jus d'Orange Frais</span><span class="font-bold text-brand-teal text-base md:text-lg">22 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Mojito Classic / Fraise</span><span class="font-bold text-brand-teal text-base md:text-lg">32 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-gray-800 text-sm md:text-base">Milkshake Oreo</span><span class="font-bold text-brand-teal text-base md:text-lg">39 DH</span></div>
+                        <div class="flex justify-between items-baseline border-b border-dashed border-gray-200 pb-2 md:pb-3 hover:bg-gray-50 px-2 rounded-lg"><span class="font-bold text-brand-teal text-base md:text-lg">15 DH</span><span class="font-bold text-gray-800 text-sm md:text-base">Thé / Café Noir</span></div>
                     </div>
                 </div>
 
             </div>
             
-            <div class="mt-16 text-center">
-                <a href="https://wa.me/212771272260" target="_blank" class="inline-flex items-center gap-3 px-10 py-4 bg-brand-dark text-white font-bold text-lg rounded-full hover:bg-brand-purple transition-all transform hover:scale-105 shadow-2xl">
+            <div class="mt-10 md:mt-16 text-center px-4">
+                <a href="https://wa.me/212771272260" target="_blank" class="inline-flex items-center gap-3 px-8 md:px-10 py-3.5 md:py-4 bg-brand-dark text-white font-bold text-base md:text-lg rounded-full hover:bg-brand-purple transition-all transform hover:scale-105 shadow-2xl w-full sm:w-auto justify-center">
                     <span data-i18n="btn_pass_order">Passer Commande</span> <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- قسم فيديو التجربة (Experience Video) -->
-    <section class="py-24 bg-brand-teal text-white relative overflow-hidden">
+    <!-- Experience Section -->
+    <section class="py-16 md:py-24 bg-brand-teal text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-white/5 opacity-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="font-heading text-3xl md:text-5xl font-bold" data-i18n="exp_title">Vivez l'Expérience <span class="font-creative">Ô'crepino</span></h2>
-                <div class="w-24 h-1.5 bg-brand-mustard mx-auto rounded-full mt-6"></div>
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="font-heading text-2xl md:text-5xl font-bold px-2" data-i18n="exp_title">Vivez l'Expérience <span class="font-creative">Ô'crepino</span></h2>
+                <div class="w-20 md:w-24 h-1 md:h-1.5 bg-brand-mustard mx-auto rounded-full mt-4 md:mt-6"></div>
             </div>
-            <div class="flex justify-center">
-                <div class="relative w-full max-w-sm rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white/20 transform rotate-2 hover:rotate-0 transition-transform duration-500" style="aspect-ratio: 9/16; background-color: #000;">
-                    <!-- فيديو قسم التجربة 9flgla -->
+            <div class="flex justify-center px-6">
+                <div class="relative w-full max-w-[280px] md:max-w-sm rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white/20 transform md:rotate-2 hover:rotate-0 transition-transform duration-500" style="aspect-ratio: 9/16; background-color: #000;">
                     <iframe src="https://streamable.com/e/9flgla?autoplay=1&loop=1&muted=1&controls=0&nocontrols=1" frameborder="0" width="100%" height="100%" allow="fullscreen; autoplay; encrypted-media" allowfullscreen class="w-full h-full object-cover"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- قسم المعرض (Gallery) -->
-    <section id="gallery" class="py-24 bg-white">
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-            <div class="text-center mb-16">
-                <h2 class="font-heading text-4xl font-bold text-brand-teal" data-i18n="gallery_title">Galerie Photos</h2>
-                <p class="text-gray-500 mt-3 text-lg font-light" data-i18n="gallery_subtitle">Un aperçu de notre univers.</p>
+            <div class="text-center mb-10 md:mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-teal" data-i18n="gallery_title">Galerie Photos</h2>
+                <p class="text-gray-500 mt-2 md:mt-3 text-base md:text-lg font-light" data-i18n="gallery_subtitle">Un aperçu de notre univers.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- صورة الكريب الكبيرة -->
-                <div class="col-span-1 md:col-span-2 relative overflow-hidden rounded-3xl group cursor-pointer shadow-lg transform transition duration-500 hover:scale-[1.02]">
-                     <img src="https://i.postimg.cc/jSSKqZwG/403917369-362070216211104-3626819943089791063-n-heic.jpg" alt="Signature" class="w-full h-[400px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-110">
-                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                         <span class="text-white font-bold text-xl" data-i18n="gallery_label">Nos Plats</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <div class="col-span-1 md:col-span-2 relative overflow-hidden rounded-2xl md:rounded-3xl group cursor-pointer shadow-lg transform transition duration-500 hover:scale-[1.01]">
+                     <img src="https://i.postimg.cc/jSSKqZwG/403917369-362070216211104-3626819943089791063-n-heic.jpg" alt="Signature" class="w-full h-[250px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-110">
+                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 md:p-8">
+                         <span class="text-white font-bold text-lg md:text-xl" data-i18n="gallery_label">Nos Plats</span>
                      </div>
                 </div>
-                <!-- العمود الأيمن يحتوي على صورتين -->
-                <div class="flex flex-col gap-6">
-                    <div class="relative overflow-hidden rounded-3xl group cursor-pointer shadow-lg transform transition duration-500 hover:scale-[1.02]">
-                        <img src="https://i.postimg.cc/HkkHWB8H/618465415-17985352676939102-1635689802383891278-n.jpg" alt="Pizza" class="w-full h-[188px] md:h-[288px] object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="flex flex-col gap-4 md:gap-6">
+                    <div class="relative overflow-hidden rounded-2xl md:rounded-3xl group cursor-pointer shadow-lg transform transition duration-500 hover:scale-[1.01]">
+                        <img src="https://i.postimg.cc/HkkHWB8H/618465415-17985352676939102-1635689802383891278-n.jpg" alt="Pizza" class="w-full h-[180px] md:h-[288px] object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
-                    <div class="relative overflow-hidden rounded-3xl group cursor-pointer shadow-lg transform transition duration-500 hover:scale-[1.02]">
-                        <img src="https://i.postimg.cc/Jzzm7PH1/Screenshot-2026-02-10-00-11-20-63-1c337646f29875672b5a61192b9010f9.jpg" alt="Dessert" class="w-full h-[188px] md:h-[288px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="relative overflow-hidden rounded-2xl md:rounded-3xl group cursor-pointer shadow-lg transform transition duration-500 hover:scale-[1.01]">
+                        <img src="https://i.postimg.cc/Jzzm7PH1/Screenshot-2026-02-10-00-11-20-63-1c337646f29875672b5a61192b9010f9.jpg" alt="Dessert" class="w-full h-[180px] md:h-[288px] object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- قسم التواصل والموقع (Contact) -->
-    <section id="contact" class="py-24 bg-brand-cream relative">
+    <!-- Location & Contact -->
+    <section id="contact" class="py-16 md:py-24 bg-brand-cream relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
-            <div class="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/50">
-                <div class="md:w-1/3 p-12 bg-brand-teal text-white flex flex-col justify-center relative overflow-hidden text-center md:text-start" dir="auto">
-                    <div class="absolute top-0 right-0 -mr-8 -mt-8 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-                    <h3 class="font-heading text-3xl font-bold mb-8 relative z-10" data-i18n="contact_title">Contactez-nous</h3>
-                    <div class="space-y-8 relative z-10">
-                        <div class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start gap-3">
-                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-mustard"><i class="fas fa-map-marker-alt"></i></div>
-                            <div><h4 class="font-bold">Adresse</h4><p class="text-sm text-gray-200">Salé, Maroc</p></div>
+            <div class="bg-white rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/50">
+                <div class="md:w-1/3 p-8 md:p-12 bg-brand-teal text-white flex flex-col justify-center relative overflow-hidden text-center md:text-left" dir="auto">
+                    <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 md:w-40 md:h-40 bg-white/10 rounded-full blur-3xl"></div>
+                    <h3 class="font-heading text-2xl md:text-3xl font-bold mb-6 md:mb-8 relative z-10" data-i18n="contact_title">Contactez-nous</h3>
+                    <div class="space-y-6 md:space-y-8 relative z-10">
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-mustard"><i class="fas fa-map-marker-alt"></i></div>
+                            <div><h4 class="font-bold text-sm md:text-base">Adresse</h4><p class="text-xs md:text-sm text-gray-200">Salé, Maroc</p></div>
                         </div>
-                        <div class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start gap-3">
-                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-mustard"><i class="fas fa-phone-alt"></i></div>
-                            <div><h4 class="font-bold">Téléphone</h4><p class="text-sm text-gray-200"><a href="tel:0808675222">080-8675222</a></p></div>
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-mustard"><i class="fas fa-phone-alt"></i></div>
+                            <div><h4 class="font-bold text-sm md:text-base">Téléphone</h4><p class="text-xs md:text-sm text-gray-200"><a href="tel:0808675222">080-8675222</a></p></div>
                         </div>
-                        <div class="flex flex-col md:flex-row items-center md:items-start text-center md:text-start gap-3">
-                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-mustard"><i class="fas fa-clock"></i></div>
-                            <div><h4 class="font-bold">Horaires</h4><p class="text-sm text-gray-200" data-i18n="contact_hours_val">08h00 - 00h00</p></div>
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-mustard"><i class="fas fa-clock"></i></div>
+                            <div><h4 class="font-bold text-sm md:text-base">Horaires</h4><p class="text-xs md:text-sm text-gray-200" data-i18n="contact_hours_val">08h00 - 00h00</p></div>
                         </div>
                     </div>
-                    <div class="mt-12 relative z-10">
-                        <a href="https://wa.me/212771272260" target="_blank" class="block w-full py-4 bg-white text-brand-teal font-bold text-center rounded-xl hover:bg-brand-mustard transition-all transform hover:-translate-y-1">
-                            <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="btn_whatsapp_msg">WhatsApp</span>
+                    <div class="mt-8 md:mt-12 relative z-10">
+                        <a href="https://wa.me/212771272260" target="_blank" class="block w-full py-3.5 md:py-4 bg-white text-brand-teal font-bold text-center rounded-xl hover:bg-brand-mustard transition-all transform hover:-translate-y-1 text-sm md:text-base">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> <span data-i18n="btn_whatsapp_msg">WhatsApp</span>
                         </a>
                     </div>
                 </div>
-                <div class="md:w-2/3 h-96 md:h-auto bg-gray-200">
+                <div class="md:w-2/3 h-72 md:h-auto bg-gray-200">
                     <iframe src="https://maps.google.com/maps?q=OCrepino+Salé+Bab+Lamrissa&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- تذييل الصفحة (Footer) -->
-    <footer class="bg-brand-dark text-white py-16 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-start">
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-12 md:py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="flex flex-col md:flex-row items-center gap-4">
-                    <img src="https://i.postimg.cc/tT3Yq7nY/Whats-App-Image-2026-02-09-at-02-18-16.jpg" alt="Logo" class="h-16 w-16 rounded-full logo-fix bg-white">
-                    <span class="font-creative text-2xl tracking-wider"><span class="text-brand-red">Ô</span><span class="text-brand-mustard">'crepino</span></span>
+                    <img src="https://i.postimg.cc/tT3Yq7nY/Whats-App-Image-2026-02-09-at-02-18-16.jpg" alt="Logo" class="h-12 w-12 md:h-16 md:w-16 rounded-full logo-fix bg-white">
+                    <span class="font-creative text-xl md:text-2xl tracking-wider"><span class="text-brand-red">Ô</span><span class="text-brand-mustard">'crepino</span></span>
                 </div>
-                <div class="flex gap-6">
-                    <a href="https://www.facebook.com/share/16zGSqzFwM/" target="_blank" class="hover:text-[#1877F2] transition-all"><i class="fab fa-facebook text-2xl"></i></a>
-                    <a href="https://www.instagram.com/ocrepino" target="_blank" class="hover:text-[#E4405F] transition-all"><i class="fab fa-instagram text-2xl"></i></a>
-                    <a href="https://www.tiktok.com/@ocrepino" target="_blank" class="hover:text-white/50 transition-all"><i class="fab fa-tiktok text-2xl"></i></a>
+                <div class="flex gap-4 md:gap-6">
+                    <a href="https://www.facebook.com/share/16zGSqzFwM/" target="_blank" class="hover:text-[#1877F2] transition-all"><i class="fab fa-facebook text-xl md:text-2xl"></i></a>
+                    <a href="https://www.instagram.com/ocrepino" target="_blank" class="hover:text-[#E4405F] transition-all"><i class="fab fa-instagram text-xl md:text-2xl"></i></a>
+                    <a href="https://www.tiktok.com/@ocrepino" target="_blank" class="hover:text-white/50 transition-all"><i class="fab fa-tiktok text-xl md:text-2xl"></i></a>
                 </div>
-                <p class="text-gray-500 text-sm">© 2026 Ô'crepino. Tous droits réservés.</p>
+                <p class="text-gray-500 text-xs md:text-sm">© 2026 Ô'crepino. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
-    <!-- المنطق البرمجي (JavaScript) -->
     <script>
         const translations = {
             fr: {
@@ -445,7 +447,7 @@
                 about_title: "Plus qu'un restaurant,", about_subtitle: "une expérience.",
                 about_uptitle: "NOTRE HISTOIRE",
                 about_text1: "Situé à Salé، Ô'crepino est né d'une passion pour les saveurs authentiques et l'hospitalité marocaine.",
-                about_text2: "Que vous ayez envie d'une crêpe gourmande، d'une pizza croustillante أو مجرد قهوة، فريقنا يرحب بك.",
+                about_text2: "Que vous ayez envie d'une crêpe gourmande، d'une pizza croustillante ou simplement d'un café، notre équipe vous accueille avec le sourire.",
                 about_quote: "\"Le meilleur endroit à Salé pour se détendre.\"",
                 menu_title: "Le Menu", tab_crepes: "Crêpes Salées", tab_pizza: "Pizzas & Pâtes", tab_tacos: "Tacos & Burgers", tab_plats: "Plats & Salades", tab_dessert: "Sucré", tab_drinks: "Boissons",
                 btn_pass_order: "Passer Commande", exp_title: "Vivez l'Expérience",
@@ -495,7 +497,12 @@
 
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        
+        function toggleMobileMenu() {
+            menu.classList.toggle('hidden');
+        }
+
+        btn.addEventListener('click', toggleMobileMenu);
 
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
@@ -518,7 +525,7 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) reveals[i].classList.add("active");
+                if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
             }
         }
         window.addEventListener("scroll", reveal);
